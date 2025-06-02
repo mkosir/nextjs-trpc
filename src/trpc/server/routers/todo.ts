@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
 import { z } from 'zod';
 
+import { sendCompletionEmail } from '@/common/utils/sendCompletionEmail';
 import { clientPromise } from '@/db/mongodb';
 import type { Todo } from '@/db/types';
 
@@ -50,6 +51,18 @@ export const todoRouter = createTRPCRouter({
 
     if (!updatedTodo) {
       throw new Error('Todo not found');
+    }
+
+    const allTodos = await todos.find().toArray();
+    const areAllCompleted = allTodos.length > 0 && allTodos.every((todo) => todo.completed);
+
+    if (areAllCompleted) {
+      try {
+        await sendCompletionEmail();
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Error sending completion email: ', error);
+      }
     }
 
     return updatedTodo;

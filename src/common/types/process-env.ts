@@ -11,6 +11,7 @@ const envVariables = z.object({
   MONGODB_URI: z.string(),
   EMAIL_ADDRESS: z.string(),
   EMAIL_PASSWORD: z.string(),
+  EMAIL_MODE: z.union([z.literal('live'), z.literal('test')]),
 });
 
 declare global {
