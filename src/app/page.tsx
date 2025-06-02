@@ -1,6 +1,6 @@
 'use client';
 
-import { trpc } from '@/trpc/client/client';
+import { trpc } from '@/trpc/client';
 
 import { TodoCreate, TodoList } from './_components';
 

@@ -1,15 +1,25 @@
 'use client';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { useState } from 'react';
 import superjson from 'superjson';
 
-import { trpc } from './client';
+import { makeReactQueryClient } from './makeReactQueryClient';
+
+import { trpc } from '.';
+
+let clientQueryClientSingleton: QueryClient | null;
+const getQueryClient = () => {
+  // On the server, always create a new QueryClient instance
+  if (typeof window === 'undefined') return makeReactQueryClient();
+
+  return (clientQueryClientSingleton ??= makeReactQueryClient());
+};
 
 export const TrpcProvider = ({ children }: { children: React.ReactNode }) => {
-  // eslint-disable-next-line react/hook-use-state
-  const [queryClient] = useState(() => new QueryClient({}));
+  const queryClient = getQueryClient();
 
   // eslint-disable-next-line react/hook-use-state
   const [trpcClient] = useState(() =>
