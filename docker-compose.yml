@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  nextjs-trpc-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3100:3100'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NEXT_PUBLIC_NODE_ENV=development
+      - NEXT_PUBLIC_TRPC_API=http://localhost:3100/api/trpc
+      - MONGODB_URI=mongodb://nextjs-trpc-db:27017/nextjs-trpc
+    command: npm run dev
+    depends_on:
+      - nextjs-trpc-db
+
+  nextjs-trpc-db:
+    image: mongo:8
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=nextjs-trpc
+
+volumes:
+  mongodb_data:

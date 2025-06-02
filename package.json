@@ -1,0 +1,51 @@
+{
+  "name": "nextjs-trpc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3100",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --report-unused-disable-directives --max-warnings 0 .",
+    "lint-fix": "eslint --fix .",
+    "tsc": "tsc -p tsconfig.json",
+    "format-lint": "prettier --config .prettierrc --check --ignore-unknown .",
+    "format-fix": "prettier --config .prettierrc --write --ignore-unknown -l .",
+    "test": "vitest watch"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.79.0",
+    "@trpc/client": "11.2.0",
+    "@trpc/next": "11.2.0",
+    "@trpc/react-query": "11.2.0",
+    "@trpc/server": "11.2.0",
+    "mongodb": "6.16.0",
+    "next": "15.3.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "superjson": "2.2.2",
+    "zod": "3.25.47"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.28.0",
+    "@tailwindcss/postcss": "4.1.8",
+    "@tanstack/eslint-plugin-query": "5.78.0",
+    "@types/node": "22.15.29",
+    "@types/react": "19.1.6",
+    "@types/react-dom": "19.1.5",
+    "@vitest/eslint-plugin": "1.2.1",
+    "eslint": "9.28.0",
+    "eslint-config-prettier": "10.1.5",
+    "eslint-import-resolver-typescript": "4.4.2",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-prettier": "5.4.1",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "prettier": "3.5.3",
+    "prettier-plugin-tailwindcss": "0.6.12",
+    "tailwindcss": "4.1.8",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.33.0",
+    "vitest": "3.1.4"
+  }
+}
