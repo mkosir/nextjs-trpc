@@ -9,6 +9,8 @@ const envVariables = z.object({
   NEXT_PUBLIC_NODE_ENV: z.union([z.literal('development'), z.literal('stage'), z.literal('production')]),
   NEXT_PUBLIC_TRPC_API: z.string(),
   MONGODB_URI: z.string(),
+  EMAIL_ADDRESS: z.string(),
+  EMAIL_PASSWORD: z.string(),
 });
 
 declare global {

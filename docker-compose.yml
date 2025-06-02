@@ -10,10 +10,8 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    environment:
-      - NEXT_PUBLIC_NODE_ENV=development
-      - NEXT_PUBLIC_TRPC_API=http://localhost:3100/api/trpc
-      - MONGODB_URI=mongodb://nextjs-trpc-db:27017/nextjs-trpc
+    env_file:
+      - .env.local
     command: npm run dev
     depends_on:
       - nextjs-trpc-db
